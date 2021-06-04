@@ -61,7 +61,7 @@
                 </div>
                 <div class="mb-3">
                 <label for="pertemuan_ke">Pertemuan Ke</label>
-                    <input type="text" class="form-control" id="pertemuan_ke" name="pertemuan_ke"  placeholder="Masukkan Pertemuan Ke" autocomplete="off" required>
+                    <input type="number" class="form-control" id="pertemuan_ke" name="pertemuan_ke"  placeholder="Masukkan Pertemuan Ke" autocomplete="off" required>
                 </div>
                 
                 <div class="mb-3">
