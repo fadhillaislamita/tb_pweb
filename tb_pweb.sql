@@ -120,3 +120,127 @@ INSERT INTO `mahasiswa` (`id`, `nama`, `nim`, `email`, `tipe`, `password`) VALUE
 (19, 'Ufa Aurora Guciano', '1911522018', 'ufa@gmail.com', 2, 123);
 
 -- --------------------------------------------------------
+
+--
+-- Table structure for table `pertemuan`
+--
+
+CREATE TABLE `pertemuan` (
+  `pertemuan_id` int(11) NOT NULL,
+  `kelas_id` int(11) NOT NULL,
+  `pertemuan_ke` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
+  `materi` varchar(225) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pertemuan`
+--
+
+INSERT INTO `pertemuan` (`pertemuan_id`, `kelas_id`, `pertemuan_ke`, `tanggal`, `materi`) VALUES
+(1, 1, 5, '2021-06-18', 'Pengenalan Lingkungan 1'),
+(2, 2, 4, '2021-07-10', 'Kuis 1'),
+(8, 4, 1, '2021-06-03', 'Perkenalan'),
+(9, 6, 5, '2021-06-18', 'Animals');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `absensi`
+--
+ALTER TABLE `absensi`
+  ADD PRIMARY KEY (`absensi_id`),
+  ADD KEY `krs_id` (`krs_id`),
+  ADD KEY `pertemuan_id` (`pertemuan_id`);
+
+--
+-- Indexes for table `kelas`
+--
+ALTER TABLE `kelas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `krs`
+--
+ALTER TABLE `krs`
+  ADD PRIMARY KEY (`krs_id`),
+  ADD KEY `kelas_id` (`kelas_id`),
+  ADD KEY `mahasiswa_id` (`mahasiswa_id`);
+
+--
+-- Indexes for table `mahasiswa`
+--
+ALTER TABLE `mahasiswa`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pertemuan`
+--
+ALTER TABLE `pertemuan`
+  ADD PRIMARY KEY (`pertemuan_id`),
+  ADD KEY `kelas_id` (`kelas_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `absensi`
+--
+ALTER TABLE `absensi`
+  MODIFY `absensi_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `kelas`
+--
+ALTER TABLE `kelas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `krs`
+--
+ALTER TABLE `krs`
+  MODIFY `krs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `mahasiswa`
+--
+ALTER TABLE `mahasiswa`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `pertemuan`
+--
+ALTER TABLE `pertemuan`
+  MODIFY `pertemuan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `absensi`
+--
+ALTER TABLE `absensi`
+  ADD CONSTRAINT `absensi_ibfk_1` FOREIGN KEY (`krs_id`) REFERENCES `krs` (`krs_id`),
+  ADD CONSTRAINT `absensi_ibfk_2` FOREIGN KEY (`pertemuan_id`) REFERENCES `pertemuan` (`pertemuan_id`);
+
+--
+-- Constraints for table `krs`
+--
+ALTER TABLE `krs`
+  ADD CONSTRAINT `krs_ibfk_1` FOREIGN KEY (`kelas_id`) REFERENCES `kelas` (`id`),
+  ADD CONSTRAINT `krs_ibfk_2` FOREIGN KEY (`mahasiswa_id`) REFERENCES `mahasiswa` (`id`);
+
+--
+-- Constraints for table `pertemuan`
+--
+ALTER TABLE `pertemuan`
+  ADD CONSTRAINT `pertemuan_ibfk_1` FOREIGN KEY (`kelas_id`) REFERENCES `kelas` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
