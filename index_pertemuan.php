@@ -3,7 +3,7 @@
 
     if(isset($_POST['search'])){
         $cari=$_POST['cari'];
-        $result= mysqli_query($mysqli,  "SELECT * FROM pertemuan WHERE pertemuan_ke LIKE '%".$cari."%'");   
+        $result= mysqli_query($mysqli,  "SELECT * FROM pertemuan JOIN kelas ON pertemuan.kelas_id=kelas.id WHERE pertemuan_ke LIKE '%".$cari."%'");   
     }
     else{
         $result = mysqli_query($mysqli, "SELECT * FROM pertemuan JOIN kelas ON pertemuan.kelas_id=kelas.id");
