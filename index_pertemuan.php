@@ -64,7 +64,7 @@
                         <td><?php echo $data['tanggal'] ?></td>
                         <td><?php echo $data['materi'] ?></td>
 						<td class="text-center">
-						<a href="import.php" class='btn btn-sm btn-outline-success'> Import File CSV </a>
+						<a href="import.php?pertemuan_id=<? = $row['pertemuan_id'];?>" class='btn btn-sm btn-primary'> Import File CSV </a>
 						</td>
                     </tr>
                     <?php } ?>
